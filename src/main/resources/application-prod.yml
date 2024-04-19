@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    username: root
+    password: hih)8ghtfER5d
+    url: jdbc:mysql://localhost:3306/jobsearch
+  jpa:
+    properties:
+      hibernate:
+        dialect:

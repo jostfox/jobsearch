@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: dev
+  liquibase:
+    changelog: classpath:/db/changelog/db.changelog-master.yaml
+server:
+  port: 8080
+
+logging:
+  level:
+    root: info
+    com.example: debug
+
+
+
+
+
+
+
+
+
