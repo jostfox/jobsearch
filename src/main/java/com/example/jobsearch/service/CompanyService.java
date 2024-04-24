@@ -23,7 +23,7 @@ public interface CompanyService {
 
     List <Company> getAllByLocation(String location);
 
-    Company update(Company company);
+    Company update(String companyName, CompanyDto companydto);
 
     void delete(String companyName);
 

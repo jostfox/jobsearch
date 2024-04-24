@@ -71,4 +71,10 @@ public class CompanyController {
         return ResponseEntity.ok(dtoConverter.toDto(companyService.updateInvocation(companyName,
          companyDto)));
     }
+
+    @PutMapping("/update/{companyName}")
+    ResponseEntity<CompanyDto> update(@PathVariable("companyName") String companyName,
+                                      @RequestBody CompanyDto companyDto) {
+        return ResponseEntity.ok(dtoConverter.toDto(companyService.update(companyName, companyDto)));
+    }
 }

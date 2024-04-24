@@ -72,8 +72,13 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public Company update(Company company) {
-        return null;
+    public Company update(String companyName, CompanyDto companyDto) {
+        Company company = getByName(companyName);
+        company.setRequiredPosition(companyDto.getRequiredPosition());
+        company.setEmail(companyDto.getEmail());
+        company.setWebPage(companyDto.getWebPage());
+        company.setPhone(companyDto.getPhone());
+        return companyRepository.save(company);
     }
 
     @Override
