@@ -1,5 +1,6 @@
 package com.example.jobsearch.service;
 
+import com.example.jobsearch.dto.CompanyDto;
 import com.example.jobsearch.entity.Company;
 import com.example.jobsearch.entity.enums.RequiredPosition;
 import com.example.jobsearch.entity.enums.Status;
@@ -21,6 +22,12 @@ public interface CompanyService {
     List<Company> getAllByInvocationStatus(Status status);
 
     List <Company> getAllByLocation(String location);
+
+    Company update(Company company);
+
+    void delete(String companyName);
+
+    Company updateInvocation(String companyName, CompanyDto companyDto);
 
 
 }

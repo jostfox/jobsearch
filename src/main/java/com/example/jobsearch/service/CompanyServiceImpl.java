@@ -1,8 +1,10 @@
 package com.example.jobsearch.service;
 
+import com.example.jobsearch.dto.CompanyDto;
 import com.example.jobsearch.entity.Company;
 import com.example.jobsearch.entity.Invocation;
 import com.example.jobsearch.entity.enums.RequiredPosition;
+import com.example.jobsearch.entity.enums.Result;
 import com.example.jobsearch.entity.enums.Status;
 import com.example.jobsearch.exceptions.ItemNotFoundException;
 import com.example.jobsearch.repositories.CompanyRepository;
@@ -48,7 +50,9 @@ public class CompanyServiceImpl implements CompanyService {
     public Company create(Company company) {
         companyRepository.save(company);
         Invocation invocation =
-                Invocation.builder().company(company).creationDate(new Timestamp(System.currentTimeMillis()))
+                Invocation.builder()
+                        .company(company)
+                        .creationDate(new Timestamp(System.currentTimeMillis()))
                         .status(Status.NOT_CONTACTED).build();
         invocationRepository.save(invocation);
         company.setInvocation(invocation);
@@ -65,5 +69,27 @@ public class CompanyServiceImpl implements CompanyService {
     public List<Company> getAllByLocation(String location) {
         return getAll().stream().filter(company -> company.getLocation().contains(location)
         ).collect(Collectors.toList());
+    }
+
+    @Override
+    public Company update(Company company) {
+        return null;
+    }
+
+    @Override
+    public void delete(String companyName) {
+        Company company = getByName(companyName);
+        companyRepository.delete(company);
+    }
+
+    @Override
+    public Company updateInvocation(String companyName, CompanyDto companyDto) {
+        Company company = getByName(companyName);
+        Invocation invocation = company.getInvocation();
+        invocation.setStatus(Status.valueOf(companyDto.getInvocationStatus()));
+        invocation.setInvResult(Result.valueOf(companyDto.getInvocationResult()));
+        invocation.setResultDescription(companyDto.getResultDescription());
+        invocationRepository.save(invocation);
+        return companyRepository.save(company);
     }
 }

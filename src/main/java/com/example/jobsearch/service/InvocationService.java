@@ -15,6 +15,4 @@ public interface InvocationService {
     Invocation getByStatus(String status);
 
     Invocation getByResult(String result);
-
-    Invocation update(Invocation invocation);
 }

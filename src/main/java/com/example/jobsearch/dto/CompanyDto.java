@@ -20,6 +20,8 @@ public class CompanyDto {
     private Set<String> location;
     private RequiredPosition requiredPosition;
     private String invocationStatus;
+    private String invocationResult;
+    private String resultDescription;
     private String email;
     private WorkingPlace workingPlace;
     private String webPage;

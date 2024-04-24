@@ -47,9 +47,4 @@ public class InvocationServiceImpl implements InvocationService {
                 .findFirst().orElseThrow(() -> new ItemNotFoundException(
                         String.format("Invocation with result \"%s\" not found", result)));
     }
-
-    @Override
-    public Invocation update(Invocation invocation) {
-        return null;
-    }
 }

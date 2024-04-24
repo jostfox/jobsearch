@@ -21,42 +21,54 @@ public class CompanyController {
     private final CompanyDtoConverter dtoConverter;
 
     @GetMapping
-    ResponseEntity<List<CompanyDto>> getAll(){
-         return ResponseEntity.ok(companyService.getAll().stream()
-                .map(dtoConverter::toDto).collect(Collectors.toList()));
+    ResponseEntity<List<CompanyDto>> getAll() {
+        return ResponseEntity.ok(companyService.getAll().stream().map(dtoConverter::toDto)
+                .collect(Collectors.toList()));
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<CompanyDto> getById(@PathVariable("id") Long id){
+    ResponseEntity<CompanyDto> getById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(dtoConverter.toDto(companyService.getById(id)));
     }
 
     @PostMapping("/add")
-    ResponseEntity<CompanyDto> add(@RequestBody CompanyDto companyDto){
-        return ResponseEntity.ok(dtoConverter.toDto(companyService.create(
-                dtoConverter.createEntity(companyDto))));
+    ResponseEntity<CompanyDto> add(@RequestBody CompanyDto companyDto) {
+        return ResponseEntity.ok(dtoConverter.toDto(companyService.create(dtoConverter
+                .createEntity(companyDto))));
     }
 
     @GetMapping("/name/{companyName}")
-    ResponseEntity<CompanyDto> getByName(@PathVariable("companyName") String companyName){
+    ResponseEntity<CompanyDto> getByName(@PathVariable("companyName") String companyName) {
         return ResponseEntity.ok(dtoConverter.toDto(companyService.getByName(companyName)));
     }
 
     @GetMapping("/position/{position}")
-    ResponseEntity<List<CompanyDto>> getByRequiredPosition(@PathVariable("position") RequiredPosition position){
+    ResponseEntity<List<CompanyDto>> getByRequiredPosition(@PathVariable("position") RequiredPosition position) {
         return ResponseEntity.ok(companyService.getAllByRequiredPosition(position).stream()
-        .map(dtoConverter::toDto).collect(Collectors.toList()));
+                .map(dtoConverter::toDto).collect(Collectors.toList()));
     }
 
     @GetMapping("/invocationStatus/{invocationStatus}")
-    ResponseEntity <List<CompanyDto>> getByInvocationStatus(@PathVariable("invocationStatus") Status status){
-        return ResponseEntity.ok(companyService.getAllByInvocationStatus(status).stream().map(
-                dtoConverter::toDto).collect(Collectors.toList()));
+    ResponseEntity<List<CompanyDto>> getByInvocationStatus(@PathVariable("invocationStatus") Status status) {
+        return ResponseEntity.ok(companyService.getAllByInvocationStatus(status).stream()
+                .map(dtoConverter::toDto).collect(Collectors.toList()));
     }
 
     @GetMapping("/location/{location}")
-    ResponseEntity <List<CompanyDto>> getByLocation(@PathVariable("location") String location){
+    ResponseEntity<List<CompanyDto>> getByLocation(@PathVariable("location") String location) {
         return ResponseEntity.ok(companyService.getAllByLocation(location).stream()
                 .map(dtoConverter::toDto).collect(Collectors.toList()));
+    }
+
+    @DeleteMapping("/delete/{companyName}")
+    void delete(@PathVariable("companyName") String companyName) {
+        companyService.delete(companyName);
+    }
+
+    @PutMapping("/updateInvocation/{companyName}")
+    ResponseEntity<CompanyDto> updateInvocation(@PathVariable("companyName") String companyName,
+                                                @RequestBody CompanyDto companyDto) {
+        return ResponseEntity.ok(dtoConverter.toDto(companyService.updateInvocation(companyName,
+         companyDto)));
     }
 }
