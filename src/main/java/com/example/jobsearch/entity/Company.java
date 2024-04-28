@@ -1,6 +1,7 @@
 package com.example.jobsearch.entity;
 
 import com.example.jobsearch.entity.enums.RequiredPosition;
+import com.example.jobsearch.entity.enums.VacancyStatus;
 import com.example.jobsearch.entity.enums.WorkingPlace;
 import jakarta.persistence.*;
 import lombok.*;
@@ -28,6 +29,9 @@ public class Company {
 
     @Enumerated(EnumType.STRING)
     private RequiredPosition requiredPosition;
+
+    @Enumerated(EnumType.STRING)
+    private VacancyStatus vacancyStatus;
 
     @OneToOne(mappedBy = "company", cascade = CascadeType.ALL)
     private Invocation invocation;

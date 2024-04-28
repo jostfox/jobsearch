@@ -17,7 +17,7 @@ public interface CompanyService {
 
     List<Company> getAllByRequiredPosition(RequiredPosition position);
 
-    Company create(Company company);
+    void create(Company company);
 
     List<Company> getAllByInvocationStatus(Status status);
 

@@ -32,9 +32,8 @@ public class CompanyController {
     }
 
     @PostMapping("/add")
-    ResponseEntity<CompanyDto> add(@RequestBody CompanyDto companyDto) {
-        return ResponseEntity.ok(dtoConverter.toDto(companyService.create(dtoConverter
-                .createEntity(companyDto))));
+    void add(@RequestBody CompanyDto companyDto) {
+        companyService.create(dtoConverter.createEntity(companyDto));
     }
 
     @GetMapping("/name/{companyName}")

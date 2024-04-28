@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS company
     company_name VARCHAR(45),
     location VARCHAR(100),
     required_position VARCHAR(45),
+    vacancy_status VARCHAR(20),
     invocation VARCHAR(45),
     email VARCHAR(45),
     working_place VARCHAR(45),

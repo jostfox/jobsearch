@@ -1,5 +1,6 @@
 package com.example.jobsearch.exceptions.handler;
 
+import com.example.jobsearch.exceptions.ExistingCompanyException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,12 @@ public class ControllerExceptionHandler {
     public ResponseEntity itemNotFoundException(ItemNotFoundException exception,
                                                 HttpServletRequest request){
         return new ResponseEntity(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity existingCompanyException(ExistingCompanyException exception,
+                                                   HttpServletRequest request){
+        return new ResponseEntity(exception.getMessage(), HttpStatus.CONFLICT);
     }
 
 
