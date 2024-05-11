@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS company
     vacancy_status VARCHAR(20),
     invocation VARCHAR(45),
     email VARCHAR(45),
+    contact_name VARCHAR(60),
     working_place VARCHAR(45),
     web_page VARCHAR(100),
     phone VARCHAR(45)

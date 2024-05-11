@@ -25,6 +25,7 @@ public class CompanyDto {
     private String invocationResult;
     private String resultDescription;
     private String email;
+    private String contactName;
     private WorkingPlace workingPlace;
     private String webPage;
     private String phone;

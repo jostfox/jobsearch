@@ -37,6 +37,7 @@ public class Company {
     private Invocation invocation;
 
     private String email;
+    private String contactName;
 
     @Enumerated(EnumType.STRING)
     private WorkingPlace workingPlace;

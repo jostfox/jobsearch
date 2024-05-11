@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: prod
   liquibase:
     changelog: classpath:/db/changelog/db.changelog-master.yaml
 server:
