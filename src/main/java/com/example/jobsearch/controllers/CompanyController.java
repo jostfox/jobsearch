@@ -5,6 +5,8 @@ import com.example.jobsearch.dto.CompanyDto;
 import com.example.jobsearch.entity.enums.RequiredPosition;
 import com.example.jobsearch.entity.enums.Status;
 import com.example.jobsearch.service.CompanyService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Tag(name = "Company controller",
+        description = "Provides CRUD operations with the companies")
 @RestController
 @RequestMapping("/api/company")
 @RequiredArgsConstructor
@@ -20,6 +24,7 @@ public class CompanyController {
     private final CompanyService companyService;
     private final CompanyDtoConverter dtoConverter;
 
+    @Operation(summary = "List of all companies", description = "Get a list of all companies")
     @GetMapping
     ResponseEntity<List<CompanyDto>> getAll() {
         return ResponseEntity.ok(companyService.getAll().stream().map(dtoConverter::toDto)
@@ -68,7 +73,7 @@ public class CompanyController {
     ResponseEntity<CompanyDto> updateInvocation(@PathVariable("companyName") String companyName,
                                                 @RequestBody CompanyDto companyDto) {
         return ResponseEntity.ok(dtoConverter.toDto(companyService.updateInvocation(companyName,
-         companyDto)));
+                companyDto)));
     }
 
     @PutMapping("/update/{companyName}")

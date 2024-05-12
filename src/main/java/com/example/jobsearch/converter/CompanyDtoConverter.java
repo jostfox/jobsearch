@@ -4,6 +4,7 @@ import com.example.jobsearch.dto.CompanyDto;
 import com.example.jobsearch.entity.Company;
 
 import com.example.jobsearch.entity.Invocation;
+import com.example.jobsearch.entity.enums.Result;
 import com.example.jobsearch.entity.enums.Status;
 import com.example.jobsearch.service.CompanyService;
 import com.example.jobsearch.service.InvocationService;
@@ -26,9 +27,9 @@ public class CompanyDtoConverter implements DtoConverter<CompanyDto, Company> {
                 .location(company.getLocation())
                 .requiredPosition(company.getRequiredPosition())
                 .vacancyStatus(company.getVacancyStatus())
-                .invocationStatus(company.getInvocation().getStatus().toString())
+                .invocationStatus(Status.valueOf(company.getInvocation().getStatus().toString()))
                 .invocationResult ((company.getInvocation().getInvResult() != null)
-                        ? company.getInvocation().getInvResult().toString() : null)
+                        ? company.getInvocation().getInvResult() : null)
                 .resultDescription((company.getInvocation().getResultDescription() != null)
                         ? company.getInvocation().getResultDescription() : null)
                 .email(company.getEmail())
@@ -46,7 +47,7 @@ public class CompanyDtoConverter implements DtoConverter<CompanyDto, Company> {
                 .location(companyDto.getLocation())
                 .requiredPosition(companyDto.getRequiredPosition())
                 .vacancyStatus(companyDto.getVacancyStatus())
-                .invocation(invocationService.getByStatus(companyDto.getInvocationStatus()))
+                .invocation(invocationService.getByStatus(companyDto.getInvocationStatus().toString()))
                 .email(companyDto.getEmail())
                 .workingPlace(companyDto.getWorkingPlace())
                 .webPage(companyDto.getWebPage())

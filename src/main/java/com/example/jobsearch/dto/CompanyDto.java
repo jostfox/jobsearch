@@ -1,11 +1,7 @@
 package com.example.jobsearch.dto;
 
-import com.example.jobsearch.entity.enums.RequiredPosition;
-import com.example.jobsearch.entity.enums.Status;
-import com.example.jobsearch.entity.enums.VacancyStatus;
-import com.example.jobsearch.entity.enums.WorkingPlace;
+import com.example.jobsearch.entity.enums.*;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.persistence.Enumerated;
 import lombok.*;
 
 import java.util.Set;
@@ -21,8 +17,8 @@ public class CompanyDto {
     private Set<String> location;
     private RequiredPosition requiredPosition;
     private VacancyStatus vacancyStatus;
-    private String invocationStatus;
-    private String invocationResult;
+    private Status invocationStatus;
+    private Result invocationResult;
     private String resultDescription;
     private String email;
     private String contactName;

@@ -52,7 +52,11 @@ public class CompanyServiceImpl implements CompanyService {
         }
         companyRepository.save(company);
         Invocation invocation =
-                Invocation.builder().company(company).creationDate(new Timestamp(System.currentTimeMillis())).status(Status.NOT_CONTACTED).build();
+                Invocation.builder()
+                        .company(company)
+                        .creationDate(new Timestamp(System.currentTimeMillis()))
+                        .status(Status.NOT_CONTACTED)
+                        .build();
         invocationRepository.save(invocation);
         company.setInvocation(invocation);
     }
@@ -87,8 +91,8 @@ public class CompanyServiceImpl implements CompanyService {
     public Company updateInvocation(String companyName, CompanyDto companyDto) {
         Company company = getByName(companyName);
         Invocation invocation = company.getInvocation();
-        invocation.setStatus(Status.valueOf(companyDto.getInvocationStatus()));
-        invocation.setInvResult(Result.valueOf(companyDto.getInvocationResult()));
+        invocation.setStatus(companyDto.getInvocationStatus());
+        invocation.setInvResult(companyDto.getInvocationResult());
         invocation.setResultDescription(companyDto.getResultDescription());
         invocationRepository.save(invocation);
         return companyRepository.save(company);

@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum VacancyStatus {
 
-    ACTIVE("Active"), INACTIVE("Inactive");
+    ACTIVE("Active"),
+    INACTIVE("Inactive");
 
     private final String value;
 
