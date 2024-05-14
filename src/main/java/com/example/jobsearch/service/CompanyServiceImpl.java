@@ -46,7 +46,10 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public void create(Company company) {
-        if (getAll().stream().anyMatch(company1 -> company1.getCompanyName().equals(company.getCompanyName()))) {
+        if (getAll().stream().anyMatch(company1 ->
+                company1.getCompanyName().equals(company.getCompanyName())
+                        && company1.getLocation().equals(company.getLocation())
+                        && company1.getRequiredPosition().equals(company.getRequiredPosition()))) {
             throw new ExistingCompanyException(String.format("Company with name \"%s\" already exists"
                     , company.getCompanyName()));
         }

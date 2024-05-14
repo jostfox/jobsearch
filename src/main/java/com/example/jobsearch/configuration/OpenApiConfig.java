@@ -3,14 +3,11 @@ package com.example.jobsearch.configuration;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
+import org.springframework.context.annotation.Configuration;
 
-@OpenAPIDefinition(info = @Info(
-        title = "Job Search application",
-        description = "Data processing application for hiring companies",
-        contact = @Contact(
-                name = "Oleg Rulyov",
-                email = "orulyov81@gmail.com"
-        )
-))
+@Configuration
+@OpenAPIDefinition(info = @Info(title = "JOB SEARCH APPLICATION REST API", version = "1.0",
+        description = "REST API",
+        contact = @Contact(name = "Oleg Rulyov")))
 public class OpenApiConfig {
 }
