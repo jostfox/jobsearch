@@ -4,7 +4,6 @@ import com.example.jobsearch.dto.CompanyDto;
 import com.example.jobsearch.entity.Company;
 import com.example.jobsearch.entity.Invocation;
 import com.example.jobsearch.entity.enums.RequiredPosition;
-import com.example.jobsearch.entity.enums.Result;
 import com.example.jobsearch.entity.enums.Status;
 import com.example.jobsearch.exceptions.ExistingCompanyException;
 import com.example.jobsearch.exceptions.ItemNotFoundException;
@@ -77,10 +76,16 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Company update(String companyName, CompanyDto companyDto) {
         Company company = getByName(companyName);
-        company.setRequiredPosition(companyDto.getRequiredPosition());
-        company.setEmail(companyDto.getEmail());
-        company.setWebPage(companyDto.getWebPage());
-        company.setPhone(companyDto.getPhone());
+        company.setVacancyStatus(companyDto.getVacancyStatus() != null ? companyDto.getVacancyStatus()
+                : company.getVacancyStatus());
+        company.setCompanyName(companyDto.getCompanyName() != null ? companyDto.getCompanyName()
+                : company.getCompanyName());
+        company.setEmail(companyDto.getEmail() != null ? companyDto.getEmail()
+                : company.getEmail());
+        company.setPhone(companyDto.getPhone() != null ? companyDto.getPhone()
+                : company.getPhone());
+        company.setWebPage(companyDto.getWebPage() != null ? companyDto.getWebPage()
+                : company.getWebPage());
         return companyRepository.save(company);
     }
 
@@ -94,9 +99,12 @@ public class CompanyServiceImpl implements CompanyService {
     public Company updateInvocation(String companyName, CompanyDto companyDto) {
         Company company = getByName(companyName);
         Invocation invocation = company.getInvocation();
-        invocation.setStatus(companyDto.getInvocationStatus());
-        invocation.setInvResult(companyDto.getInvocationResult());
-        invocation.setResultDescription(companyDto.getResultDescription());
+        invocation.setStatus(companyDto.getInvocationStatus() != null ? companyDto.getInvocationStatus()
+                : company.getInvocation().getStatus());
+        invocation.setInvResult(companyDto.getInvocationResult() != null ? companyDto.getInvocationResult()
+                : company.getInvocation().getInvResult());
+        invocation.setResultDescription(companyDto.getResultDescription() != null ? companyDto.getResultDescription()
+                : company.getInvocation().getResultDescription());
         invocationRepository.save(invocation);
         return companyRepository.save(company);
     }
